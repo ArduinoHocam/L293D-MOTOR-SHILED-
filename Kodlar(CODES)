@@ -1,4 +1,5 @@
-
+    /*ARDUINO HOCAM L293D MOTOR SHILED,
+    2 DC MOTOR CONTROL WITH JOYSTICK*/
 #include <AFMotor.h>  // 
 #define x_pin A0
 #define y_pin A1
