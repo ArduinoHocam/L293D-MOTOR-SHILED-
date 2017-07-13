@@ -1,0 +1,80 @@
+
+#include <AFMotor.h>  // 
+#define x_pin A0
+#define y_pin A1
+
+
+int xpos;
+int ypos;
+AF_DCMotor motor1(1); // 
+AF_DCMotor motor2(2);
+void setup() {
+Serial.begin(9600);
+
+motor1.run(RELEASE);
+motor2.run(RELEASE);
+pinMode(x_pin,INPUT);
+pinMode(y_pin,INPUT);
+
+
+}
+
+void loop() {
+
+  
+xpos=analogRead(A0);
+ypos=analogRead(A1);
+
+xpos=map(xpos,0,1023,0,255);
+ypos=map(ypos,0,1023,0,255);
+
+
+
+Serial.print("x:");
+Serial.println(xpos);
+Serial.print("y:");
+Serial.println(xpos);
+
+if(xpos>=120 && xpos<=130)
+{
+
+motor1.run(RELEASE);
+}
+if(xpos>130 )
+{
+  motor1.setSpeed(xpos);
+motor1.run(BACKWARD);
+  
+}
+
+if(xpos<120 )
+{
+  motor1.setSpeed(255-xpos);
+motor1.run(FORWARD);
+ 
+}
+
+//y ekseni için
+if(ypos>=120 && ypos<=130)
+{
+
+motor2.run(RELEASE);
+}
+if(ypos>130 )
+{
+  motor2.setSpeed(ypos);
+motor2.run(BACKWARD);
+  
+}
+
+if(ypos<120 )
+{
+  motor2.setSpeed(255-ypos);
+motor2.run(FORWARD);
+ 
+}
+
+
+
+
+}
